@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarpinis egzaminas 2 - Sprendimai</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            background: #f5f5f5;
+            padding: 15px;
+            gap: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .tab-button {
+            padding: 12px 20px;
+            border: none;
+            background: white;
+            color: #333;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .tab-button:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(102, 126, 234, 0.4);
+        }
+        
+        .tab-button.active {
+            background: #667eea;
+            color: white;
+            box-shadow: 0 4px 10px rgba(102, 126, 234, 0.4);
+        }
+        
+        .content {
+            padding: 40px;
+            min-height: 500px;
+        }
+        
+        .exercise {
+            display: none;
+        }
+        
+        .exercise.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .exercise h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .exercise h3 {
+            color: #764ba2;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .exercise p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .exercise ul {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .exercise li {
+            margin-bottom: 10px;
+            line-height: 1.8;
+        }
+        
+        .final-answer {
+            background: #f0f7ff;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin-top: 25px;
+            border-radius: 8px;
+        }
+        
+        .final-answer strong {
+            color: #667eea;
+            font-size: 1.2em;
+        }
+        
+        .note {
+            background: #fff9e6;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Tarpinis egzaminas 2</h1>
+            <p>2 variantas - Detalūs sprendimai</p>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab-button active" onclick="showExercise(1)">1 užduotis</button>
+            <button class="tab-button" onclick="showExercise(2)">2 užduotis</button>
+            <button class="tab-button" onclick="showExercise(3)">3 užduotis</button>
+            <button class="tab-button" onclick="showExercise(4)">4 užduotis</button>
+            <button class="tab-button" onclick="showExercise(5)">5 užduotis</button>
+            <button class="tab-button" onclick="showExercise(6)">6 užduotis</button>
+            <button class="tab-button" onclick="showExercise(7)">7 užduotis</button>
+            <button class="tab-button" onclick="showExercise(8)">8 užduotis</button>
+            <button class="tab-button" onclick="showExercise(9)">9 užduotis</button>
+        </div>
+        
+        <div class="content">
+            <!-- Exercise 1 -->
+            <div class="exercise active" id="exercise1">
+                <h2>1. Funkcijos išvestinės radimas</h2>
+                
+                <p><strong>Užduotis:</strong> Raskite funkcijos \(y = \frac{1}{\sqrt[5]{x}} \text{arctg}^3(x-5) - \frac{\ln(3x)}{7^{1-x^2}} + \frac{2}{\sqrt[3]{10}} \text{tg}^3(\cos(4)) - 9\) išvestinę \(y'\). (Neprastinti)</p>
+                
+                <p>Šiam uždaviniui išspręsti naudojame <strong>12 ir 13 pratybų</strong> medžiagą apie sudėtinių funkcijų diferencijavimą, sandaugos ir dalmens išvestines. Diferencijuojame kiekvieną narį atskirai.</p>
+                
+                <h3>1. Pirmo nario išvestinė (Sandaugos taisyklė \((uv)' = u'v + uv'\)):</h3>
+                <ul>
+                    <li>\(u = \frac{1}{\sqrt[5]{x}} = x^{-1/5}\), \(v = \text{arctg}^3(x-5)\)</li>
+                    <li>\(u' = (x^{-1/5})' = -\frac{1}{5}x^{-6/5}\)</li>
+                    <li>\(v' = (\text{arctg}^3(x-5))' = 3\text{arctg}^2(x-5) \cdot (\text{arctg}(x-5))' = 3\text{arctg}^2(x-5) \cdot \frac{1}{1+(x-5)^2} \cdot (x-5)' = 3\text{arctg}^2(x-5) \cdot \frac{1}{1+(x-5)^2}\)</li>
+                    <li>Pirmo nario išvestinė: \(\left(-\frac{1}{5}x^{-6/5} \cdot \text{arctg}^3(x-5) + x^{-1/5} \cdot 3\text{arctg}^2(x-5) \cdot \frac{1}{1+(x-5)^2}\right)\)</li>
+                </ul>
+                
+                <h3>2. Antro nario išvestinė (Dalmens taisyklė \((\frac{u}{v})' = \frac{u'v - uv'}{v^2}\)):</h3>
+                <ul>
+                    <li>\(u = \ln(3x)\), \(v = 7^{1-x^2}\)</li>
+                    <li>\(u' = (\ln(3x))' = \frac{1}{3x} \cdot (3x)' = \frac{1}{3x} \cdot 3 = \frac{1}{x}\)</li>
+                    <li>\(v' = (7^{1-x^2})' = 7^{1-x^2} \cdot \ln(7) \cdot (1-x^2)' = 7^{1-x^2} \cdot \ln(7) \cdot (-2x)\)</li>
+                    <li>Antro nario išvestinė: \(\left(\frac{\frac{1}{x} \cdot 7^{1-x^2} - \ln(3x) \cdot 7^{1-x^2} \cdot \ln(7) \cdot (-2x)}{(7^{1-x^2})^2}\right)\)</li>
+                </ul>
+                
+                <h3>3. Trečio nario išvestinė:</h3>
+                <p>Visas šis reiškinys \(\frac{2}{\sqrt[3]{10}} \text{tg}^3(\cos(4))\) yra konstanta (sudarytas tik iš skaičių). Konstantos išvestinė yra 0.</p>
+                
+                <h3>4. Ketvirto nario išvestinė:</h3>
+                <p>\((-9)'\) – tai konstanta. Jos išvestinė yra 0.</p>
+                
+                <div class="final-answer">
+                    <p><strong>Galutinis atsakymas (neprastinus):</strong></p>
+                    <p>\[y' = \left(-\frac{1}{5}x^{-6/5} \cdot \text{arctg}^3(x-5) + x^{-1/5} \cdot 3\text{arctg}^2(x-5) \cdot \frac{1}{1+(x-5)^2}\right) - \left(\frac{\frac{1}{x} \cdot 7^{1-x^2} - \ln(3x) \cdot 7^{1-x^2} \cdot \ln(7) \cdot (-2x)}{(7^{1-x^2})^2}\right) + 0 - 0\]</p>
+                </div>
+            </div>
+            
+            <!-- Exercise 2 -->
+            <div class="exercise" id="exercise2">
+                <h2>2. Funkcijos \(y = (\cos x)^x\) išvestinės radimas</h2>
+                
+                <p><strong>Užduotis:</strong> Raskite funkcijos \(y = (\cos x)^x\) išvestinę \(y'\). (Neprastinti)</p>
+                
+                <p>Šiai laipsninei-rodyklinei funkcijai taikome <strong>13 pratybų</strong> "Logaritminį diferencijavimą".</p>
+                
+                <h3>Sprendimo žingsniai:</h3>
+                <ol>
+                    <li>Logaritmuojame abi lygties puses:<br>\(\ln y = \ln((\cos x)^x)\)</li>
+                    <li>Pritaikome logaritmo savybę \(\ln(a^b) = b \ln a\):<br>\(\ln y = x \cdot \ln(\cos x)\)</li>
+                    <li>Diferencijuojame abi puses \(x\) atžvilgiu, laikydami \(y\) funkcija nuo \(x\):<br>\((\ln y)' = (x \cdot \ln(\cos x))'\)</li>
+                    <li>Kairėje pusėje taikome sudėtinės funkcijos išvestinę, dešinėje – sandaugos taisyklę:<br>
+                        \(\frac{1}{y} \cdot y' = (x)' \cdot \ln(\cos x) + x \cdot (\ln(\cos x))'\)<br>
+                        \(\frac{1}{y} \cdot y' = 1 \cdot \ln(\cos x) + x \cdot \frac{1}{\cos x} \cdot (\cos x)'\)<br>
+                        \(\frac{1}{y} \cdot y' = \ln(\cos x) + x \cdot \frac{1}{\cos x} \cdot (-\sin x)\)<br>
+                        \(\frac{1}{y} \cdot y' = \ln(\cos x) - x \cdot \frac{\sin x}{\cos x}\)<br>
+                        \(\frac{1}{y} \cdot y' = \ln(\cos x) - x \cdot \tan x\)</li>
+                    <li>Išreiškiame \(y'\) padaugindami abi puses iš \(y\):<br>\(y' = y \cdot (\ln(\cos x) - x \cdot \tan x)\)</li>
+                    <li>Įstatome pradinę \(y\) išraišką:<br>\(y' = (\cos x)^x \cdot (\ln(\cos x) - x \cdot \tan x)\)</li>
+                </ol>
+                
+                <div class="final-answer">
+                    <p><strong>Galutinis atsakymas (neprastinus):</strong></p>
+                    <p>\[y' = (\cos x)^x \cdot (\ln(\cos x) - x \cdot \tan x)\]</p>
+                </div>
+            </div>
+            
+            <!-- Exercise 3 -->
+            <div class="exercise" id="exercise3">
+                <h2>3. Funkcijos \(e^{-3x} \cos(5x) = e^{5y} \sin(3y)\) išvestinės radimas</h2>
+                
+                <p><strong>Užduotis:</strong> Raskite funkcijos \(e^{-3x} \cos(5x) = e^{5y} \sin(3y)\) išvestinę \(y_x'\). (Neprastinti)</p>
+                
+                <p>Tai yra neišreikštinė funkcija. Sprendimui naudojame <strong>13 pratybų</strong> "Neišreikštinių funkcijų diferencijavimo" metodą. Diferencijuojame abi lygties puses \(x\) atžvilgiu, laikydami \(y\) sudėtine funkcija \(y(x)\), todėl diferencijuodami \(y\) atžvilgiu prirašome \(y'\).</p>
+                
+                <h3>1. Diferencijuojame kairę pusę (LHS) \(x\) atžvilgiu (sandaugos taisyklė):</h3>
+                <p>\[(e^{-3x} \cos(5x))' = (e^{-3x})' \cdot \cos(5x) + e^{-3x} \cdot (\cos(5x))'\]</p>
+                <p>\[= (-3e^{-3x}) \cdot \cos(5x) + e^{-3x} \cdot (-5\sin(5x))\]</p>
+                <p>\[= -3e^{-3x}\cos(5x) - 5e^{-3x}\sin(5x)\]</p>
+                
+                <h3>2. Diferencijuojame dešinę pusę (RHS) \(x\) atžvilgiu (sandaugos taisyklė ir sudėtinė funkcija):</h3>
+                <p>\[(e^{5y} \sin(3y))' = (e^{5y})' \cdot \sin(3y) + e^{5y} \cdot (\sin(3y))'\]</p>
+                <p>\[= (e^{5y} \cdot 5y') \cdot \sin(3y) + e^{5y} \cdot (\cos(3y) \cdot 3y')\]</p>
+                <p>\[= 5y'e^{5y}\sin(3y) + 3y'e^{5y}\cos(3y)\]</p>
+                <p>\[= y' \cdot (5e^{5y}\sin(3y) + 3e^{5y}\cos(3y))\]</p>
+                
+                <h3>3. Sulyginame abi puses (LHS = RHS):</h3>
+                <p>\[-3e^{-3x}\cos(5x) - 5e^{-3x}\sin(5x) = y' \cdot (5e^{5y}\sin(3y) + 3e^{5y}\cos(3y))\]</p>
+                
+                <h3>4. Išreiškiame \(y'\):</h3>
+                <div class="final-answer">
+                    <p><strong>Galutinis atsakymas (neprastinus):</strong></p>
+                    <p>\[y' = \frac{-3e^{-3x}\cos(5x) - 5e^{-3x}\sin(5x)}{5e^{5y}\sin(3y) + 3e^{5y}\cos(3y)}\]</p>
+                </div>
+            </div>
+            
+            <!-- Exercise 4 -->
+            <div class="exercise" id="exercise4">
+                <h2>4. Parametrinės funkcijos išvestinės radimas</h2>
+                
+                <p><strong>Užduotis:</strong> Raskite funkcijos \(\begin{cases}x = \ln(1 + \cos 2t) \\ y = \frac{1}{1 + \cos 2t}\end{cases}\) išvestinę \(y_x'\).</p>
+                
+                <p>Naudojame <strong>13 pratybų</strong> medžiagą apie parametrinių funkcijų išvestines. Taikome formulę \(y_x' = \frac{y_t'}{x_t'}\).</p>
+                
+                <h3>1. Raskime \(x_t'\):</h3>
+                <p>\[x_t' = \frac{d}{dt} (\ln(1 + \cos 2t)) = \frac{1}{1 + \cos 2t} \cdot (1 + \cos 2t)'\]</p>
+                <p>\[= \frac{1}{1 + \cos 2t} \cdot (-\sin 2t \cdot 2) = \frac{-2\sin 2t}{1 + \cos 2t}\]</p>
+                
+                <h3>2. Raskime \(y_t'\):</h3>
+                <p>\[y_t' = \frac{d}{dt} \left(\frac{1}{1 + \cos 2t}\right) = \frac{d}{dt} ((1 + \cos 2t)^{-1})\]</p>
+                <p>\[= -1 \cdot (1 + \cos 2t)^{-2} \cdot (1 + \cos 2t)'\]</p>
+                <p>\[= -1 \cdot (1 + \cos 2t)^{-2} \cdot (-\sin 2t \cdot 2) = \frac{2\sin 2t}{(1 + \cos 2t)^2}\]</p>
+                
+                <h3>3. Taikome formulę \(y_x' = \frac{y_t'}{x_t'}\):</h3>
+                <div class="final-answer">
+                    <p><strong>Galutinis atsakymas (neprastinus):</strong></p>
+                    <p>\[y_x' = \frac{\frac{2\sin 2t}{(1 + \cos 2t)^2}}{\frac{-2\sin 2t}{1 + \cos 2t}}\]</p>
+                </div>
+                
+                <div class="note">
+                    <p><strong>Pastaba:</strong> prastinant gautume \(y_x' = \frac{1}{1 + \cos 2t} \cdot \frac{1}{-1} = -\frac{1}{1 + \cos 2t} = -y\)</p>
+                </div>
+            </div>
+            
+            <!-- Exercise 5 -->
+            <div class="exercise" id="exercise5">
+                <h2>5. Ribos apskaičiavimas taikant Lopitalio taisyklę</h2>
+                
+                <p><strong>Užduotis:</strong> Apskaičiuokite ribą \(\lim_{x\to\frac{\pi}{4}} \frac{\ln(\tan x)}{\sin 4x}\) taikydami Lopitalio taisyklę.</p>
+                
+                <p>Naudojame <strong>14 pratybų</strong> medžiagą apie Lopitalio taisyklę.</p>
+                
+                <h3>1. Patikriname neapibrėžtumą:</h3>
+                <p>Kai \(x \to \frac{\pi}{4}\):</p>
+                <ul>
+                    <li>Skaitiklis: \(\ln(\tan(\frac{\pi}{4})) = \ln(1) = 0\)</li>
+                    <li>Vardiklis: \(\sin(4 \cdot \frac{\pi}{4}) = \sin(\pi) = 0\)</li>
+                    <li>Turime neapibrėžtumą \(\frac{0}{0}\), todėl galime taikyti Lopitalio taisyklę.</li>
+                </ul>
+                
+                <h3>2. Taikome Lopitalio taisyklę (diferencijuojame skaitiklį ir vardiklį atskirai):</h3>
+                <p>\[\lim_{x\to\frac{\pi}{4}} \frac{(\ln(\tan x))'}{(\sin 4x)'}\]</p>
+                
+                <h3>3. Diferencijuojame skaitiklį:</h3>
+                <p>\[(\ln(\tan x))' = \frac{1}{\tan x} \cdot (\tan x)' = \frac{1}{\tan x} \cdot \frac{1}{\cos^2 x} = \frac{\cos x}{\sin x} \cdot \frac{1}{\cos^2 x} = \frac{1}{\sin x \cos x}\]</p>
+                
+                <h3>4. Diferencijuojame vardiklį:</h3>
+                <p>\[(\sin 4x)' = \cos(4x) \cdot (4x)' = 4\cos(4x)\]</p>
+                
+                <h3>5. Skaičiuojame naują ribą:</h3>
+                <p>\[\lim_{x\to\frac{\pi}{4}} \frac{\frac{1}{\sin x \cos x}}{4\cos 4x} = \lim_{x\to\frac{\pi}{4}} \frac{1}{4 \sin x \cos x \cos 4x}\]</p>
+                
+                <h3>6. Įstatome \(x = \frac{\pi}{4}\):</h3>
+                <p>\[\frac{1}{4 \cdot \sin(\frac{\pi}{4}) \cdot \cos(\frac{\pi}{4}) \cdot \cos(4 \cdot \frac{\pi}{4})} = \frac{1}{4 \cdot \frac{\sqrt{2}}{2} \cdot \frac{\sqrt{2}}{2} \cdot \cos(\pi)}\]</p>
+                <p>\[= \frac{1}{4 \cdot \frac{2}{4} \cdot (-1)} = \frac{1}{2 \cdot (-1)} = -\frac{1}{2}\]</p>
+                
+                <div class="final-answer">
+                    <p><strong>Galutinis atsakymas:</strong></p>
+                    <p>\[-\frac{1}{2}\]</p>
+                </div>
+            </div>
+            
+            <!-- Exercise 6 -->
+            <div class="exercise" id="exercise6">
+                <h2>6. Funkcijos dalinės išvestinės apskaičiavimas</h2>
+                
+                <p><strong>Užduotis:</strong> Apskaičiuokite funkcijos \(z = xe^{x^2 - 3x + 5xy}\) dalinę išvestinę \(\frac{\partial z}{\partial x}\) (Neprastinti)</p>
+                
+                <p>Naudojame <strong>15 pratybų</strong> medžiagą apie dalines išvestines. Ieškodami \(\frac{\partial z}{\partial x}\), kintamąjį \(y\) laikome konstanta.</p>
+                
+                <h3>Sprendimo žingsniai:</h3>
+                <ol>
+                    <li>Taikome sandaugos taisyklę \((uv)' = u'v + uv'\), kur \(u=x\) ir \(v=e^{x^2 - 3x + 5xy}\).<br>
+                        \[\frac{\partial z}{\partial x} = \frac{\partial}{\partial x}(x) \cdot e^{x^2 - 3x + 5xy} + x \cdot \frac{\partial}{\partial x}(e^{x^2 - 3x + 5xy})\]
+                    </li>
+                    <li>Apskaičiuojame dalines išvestines:
+                        <ul>
+                            <li>\(\frac{\partial}{\partial x}(x) = 1\)</li>
+                            <li>\(\frac{\partial}{\partial x}(e^{x^2 - 3x + 5xy}) = e^{x^2 - 3x + 5xy} \cdot \frac{\partial}{\partial x}(x^2 - 3x + 5xy)\)</li>
+                            <li>\(\frac{\partial}{\partial x}(x^2 - 3x + 5xy) = 2x - 3 + 5y\) (kadangi \(5y\) yra konstanta prie \(x\))</li>
+                        </ul>
+                    </li>
+                    <li>Surenkame atsakymą:<br>
+                        \[\frac{\partial z}{\partial x} = 1 \cdot e^{x^2 - 3x + 5xy} + x \cdot \left( e^{x^2 - 3x + 5xy} \cdot (2x - 3 + 5y) \right)\]
+                    </li>
+                </ol>
+                
+                <div class="final-answer">
+                    <p><strong>Galutinis atsakymas (neprastinus):</strong></p>
+                    <p>\[\frac{\partial z}{\partial x} = e^{x^2 - 3x + 5xy} + xe^{x^2 - 3x + 5xy}(2x - 3 + 5y)\]</p>
+                </div>
+            </div>
+            
+            <!-- Exercise 7 -->
+            <div class="exercise" id="exercise7">
+                <h2>7. Sudėtinės funkcijos išvestinės radimas</h2>
+                
+                <p><strong>Užduotis:</strong> Duota sudėtinė funkcija \(u = \left(\frac{x}{x^2+4}\right)^{\ln y}\); \(x = \arccos 2t\); \(y = \frac{1}{\sqrt{t^2-1}}\). Raskite \(\frac{du}{dt}\) (Neprastinti)</p>
+                
+                <p>Naudojame <strong>16 pratybų</strong> medžiagą apie sudėtinių funkcijų diferencijavimą. Turime funkciją \(u(x(t), y(t))\). Pilnoji išvestinė \(\frac{du}{dt}\) randama pagal grandininę taisyklę:</p>
+                <p>\[\frac{du}{dt} = \frac{\partial u}{\partial x} \cdot \frac{dx}{dt} + \frac{\partial u}{\partial y} \cdot \frac{dy}{dt}\]</p>
+                
+                <p>Reikia rasti keturias išvestines.</p>
+                
+                <h3>1. \(\frac{\partial u}{\partial x}\) (laikome \(y\) konstanta):</h3>
+                <ul>
+                    <li>Taikome \((w^c)' = c \cdot w^{c-1} \cdot w'\), kur \(w = \frac{x}{x^2 + 4}\) ir \(c = \ln y\).</li>
+                    <li>\(\left(\frac{x}{x^2 + 4}\right)' = \frac{(x)'(x^2+4) - x(x^2+4)'}{(x^2+4)^2} = \frac{1(x^2+4) - x(2x)}{(x^2+4)^2} = \frac{4-x^2}{(x^2+4)^2}\)</li>
+                    <li>\(\frac{\partial u}{\partial x} = \ln y \cdot \left(\frac{x}{x^2 + 4}\right)^{\ln y - 1} \cdot \frac{4-x^2}{(x^2+4)^2}\)</li>
+                </ul>
+                
+                <h3>2. \(\frac{\partial u}{\partial y}\) (laikome \(x\) konstanta):</h3>
+                <ul>
+                    <li>Taikome \((a^w)' = a^w \cdot \ln a \cdot w'\), kur \(a = \frac{x}{x^2 + 4}\) (konstanta) ir \(w = \ln y\).</li>
+                    <li>\(w' = (\ln y)' = \frac{1}{y}\)</li>
+                    <li>\(\frac{\partial u}{\partial y} = \left(\frac{x}{x^2 + 4}\right)^{\ln y} \cdot \ln\left(\frac{x}{x^2 + 4}\right) \cdot \frac{1}{y}\)</li>
+                </ul>
+                
+                <h3>3. \(\frac{dx}{dt}\):</h3>
+                <ul>
+                    <li>\(x = \arccos 2t\)</li>
+                    <li>\(\frac{dx}{dt} = \frac{-1}{\sqrt{1 - (2t)^2}} \cdot (2t)' = \frac{-2}{\sqrt{1 - 4t^2}}\)</li>
+                </ul>
+                
+                <h3>4. \(\frac{dy}{dt}\):</h3>
+                <ul>
+                    <li>\(y = (t^2 - 1)^{-1/2}\)</li>
+                    <li>\(\frac{dy}{dt} = -\frac{1}{2}(t^2 - 1)^{-3/2} \cdot (t^2 - 1)' = -\frac{1}{2}(t^2 - 1)^{-3/2} \cdot (2t) = -t(t^2 - 1)^{-3/2}\)</li>
+                </ul>
+                
+                <div class="final-answer">
+                    <p><strong>Galutinis atsakymas (neprastinus), sudedant dalis:</strong></p>
+                    <p>\[\frac{du}{dt} = \left[ \ln y \cdot \left(\frac{x}{x^2 + 4}\right)^{\ln y - 1} \cdot \frac{4-x^2}{(x^2+4)^2} \right] \cdot \left[ \frac{-2}{\sqrt{1 - 4t^2}} \right] + \left[ \left(\frac{x}{x^2 + 4}\right)^{\ln y} \cdot \ln\left(\frac{x}{x^2 + 4}\right) \cdot \frac{1}{y} \right] \cdot \left[ -t(t^2 - 1)^{-3/2} \right]\]</p>
+                </div>
+            </div>
+            
+            <!-- Exercise 8 -->
+            <div class="exercise" id="exercise8">
+                <h2>8. Neišreikštinės funkcijos išvestinės radimas</h2>
+                
+                <p><strong>Užduotis:</strong> Duota neišreikštinė funkcija \(6y^2 = 4xz - e^{x^2 + 3yz + y}\). Raskite išvestinę \(\frac{\partial z}{\partial y}\) (Neprastinti)</p>
+                
+                <p>Naudojame <strong>16 pratybų</strong> medžiagą apie neišreikštinių funkcijų diferencijavimą.</p>
+                
+                <p>Pirmiausia funkciją užrašome pavidalu \(F(x, y, z) = 0\):</p>
+                <p>\[F(x, y, z) = 6y^2 - 4xz + e^{x^2 + 3yz + y} = 0\]</p>
+                
+                <p>Taikome formulę \(\frac{\partial z}{\partial y} = -\frac{F_y'}{F_z'}\).</p>
+                
+                <h3>1. Raskime \(F_y' = \frac{\partial F}{\partial y}\) (laikome \(x\) ir \(z\) konstantomis, išskyrus kai \(z\) yra \(yz\) naryje):</h3>
+                <p>\[F_y' = \frac{\partial}{\partial y}(6y^2 - 4xz + e^{x^2 + 3yz + y})\]</p>
+                <p>\[F_y' = 12y - 0 + e^{x^2 + 3yz + y} \cdot \frac{\partial}{\partial y}(x^2 + 3yz + y)\]</p>
+                <p>\[F_y' = 12y + e^{x^2 + 3yz + y} \cdot (0 + 3z + 1) = 12y + (3z+1)e^{x^2 + 3yz + y}\]</p>
+                
+                <h3>2. Raskime \(F_z' = \frac{\partial F}{\partial z}\) (laikome \(x\) ir \(y\) konstantomis):</h3>
+                <p>\[F_z' = \frac{\partial}{\partial z}(6y^2 - 4xz + e^{x^2 + 3yz + y})\]</p>
+                <p>\[F_z' = 0 - 4x + e^{x^2 + 3yz + y} \cdot \frac{\partial}{\partial z}(x^2 + 3yz + y)\]</p>
+                <p>\[F_z' = -4x + e^{x^2 + 3yz + y} \cdot (0 + 3y + 0) = -4x + 3ye^{x^2 + 3yz + y}\]</p>
+                
+                <h3>3. Įstatome į formulę:</h3>
+                <div class="final-answer">
+                    <p><strong>Galutinis atsakymas (neprastinus):</strong></p>
+                    <p>\[\frac{\partial z}{\partial y} = -\frac{12y + (3z+1)e^{x^2 + 3yz + y}}{-4x + 3ye^{x^2 + 3yz + y}}\]</p>
+                </div>
+            </div>
+            
+            <!-- Exercise 9 -->
+            <div class="exercise" id="exercise9">
+                <h2>9. Funkcijos kryptinės išvestinės apskaičiavimas</h2>
+                
+                <p><strong>Užduotis:</strong> Apskaičiuokite funkcijos \(u = x^2 - xy - 2y^2 + xyz\) kryptinę išvestinę taške \(M_0(1; 1; 1)\) vektoriaus \(\vec{s} = (-4; 3; 0)\) kryptimi.</p>
+                
+                <p>Naudojame <strong>17 pratybų</strong> medžiagą apie kryptinę išvestinę ir gradientą.</p>
+                
+                <p>Kryptinė išvestinė randama pagal formulę \(\frac{\partial u}{\partial s} = \text{grad}~u \cdot \vec{s}^0\), kur \(\vec{s}^0\) yra vektoriaus \(\vec{s}\) vienetinis vektorius.</p>
+                
+                <h3>1. Raskime funkcijos gradientą \(\text{grad}~u\):</h3>
+                <p>\[\text{grad}~u = \left(\frac{\partial u}{\partial x}, \frac{\partial u}{\partial y}, \frac{\partial u}{\partial z}\right)\]</p>
+                <ul>
+                    <li>\(\frac{\partial u}{\partial x} = 2x - y - 0 + yz = 2x - y + yz\)</li>
+                    <li>\(\frac{\partial u}{\partial y} = 0 - x - 4y + xz = -x - 4y + xz\)</li>
+                    <li>\(\frac{\partial u}{\partial z} = 0 - 0 - 0 + xy = xy\)</li>
+                </ul>
+                <p>\[\text{grad}~u = (2x - y + yz, -x - 4y + xz, xy)\]</p>
+                
+                <h3>2. Apskaičiuokime gradiento reikšmę taške \(M_0(1, 1, 1)\):</h3>
+                <p>\[\text{grad}~u(M_0) = (2(1) - 1 + (1)(1), -1 - 4(1) + (1)(1), (1)(1))\]</p>
+                <p>\[\text{grad}~u(M_0) = (2 - 1 + 1, -1 - 4 + 1, 1)\]</p>
+                <p>\[\text{grad}~u(M_0) = (2, -4, 1)\]</p>
+                
+                <h3>3. Raskime vektoriaus \(\vec{s} = (-4, 3, 0)\) vienetinį vektorių \(\vec{s}^0\):</h3>
+                <ul>
+                    <li>Vektoriaus ilgis (modulis): \(|\vec{s}| = \sqrt{(-4)^2 + 3^2 + 0^2} = \sqrt{16 + 9 + 0} = \sqrt{25} = 5\)</li>
+                    <li>Vienetinis vektorius: \(\vec{s}^0 = \frac{\vec{s}}{|\vec{s}|} = \frac{1}{5}(-4, 3, 0) = \left(-\frac{4}{5}, \frac{3}{5}, 0\right)\)</li>
+                </ul>
+                
+                <h3>4. Apskaičiuokime kryptinę išvestinę (skaliarinė sandauga):</h3>
+                <p>\[\frac{\partial u}{\partial s} = \text{grad}~u(M_0) \cdot \vec{s}^0\]</p>
+                <p>\[\frac{\partial u}{\partial s} = (2, -4, 1) \cdot \left(-\frac{4}{5}, \frac{3}{5}, 0\right)\]</p>
+                <p>\[\frac{\partial u}{\partial s} = (2) \cdot \left(-\frac{4}{5}\right) + (-4) \cdot \left(\frac{3}{5}\right) + (1) \cdot (0)\]</p>
+                <p>\[\frac{\partial u}{\partial s} = -\frac{8}{5} - \frac{12}{5} + 0 = -\frac{20}{5} = -4\]</p>
+                
+                <div class="final-answer">
+                    <p><strong>Galutinis atsakymas:</strong></p>
+                    <p>\[-4\]</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function showExercise(num) {
+            // Hide all exercises
+            const exercises = document.querySelectorAll('.exercise');
+            exercises.forEach(ex => ex.classList.remove('active'));
+            
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Show selected exercise
+            document.getElementById('exercise' + num).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Re-render MathJax for the new content
+            MathJax.typesetPromise();
+        }
+    </script>
+</body>
+</html>
